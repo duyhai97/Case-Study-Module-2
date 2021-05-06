@@ -19,13 +19,11 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User{" +
-                "fullName='" + fullName + '\'' +
-                ", id=" + id +
-                ", dateOfBirth='" + dateOfBirth + '\'' +
-                ", phoneNumber=" + phoneNumber +
-                ", address='" + address + '\'' +
-                '}';
+        return "Họ tên :" + fullName  +
+                ", Số chứng minh: " + id +
+                ", Ngày sinh: " + dateOfBirth +
+                ", Số điện thoại: " + phoneNumber +
+                ", Địa chỉ: " + address ;
     }
 
     public String getFullName() {

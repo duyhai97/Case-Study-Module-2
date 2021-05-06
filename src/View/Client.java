@@ -67,6 +67,63 @@ public class Client {
                     hai.deleteAccount(id1);
                     break;
                 case 3:
+                    Scanner s2 = new Scanner(System.in);
+                    int id2;
+                    do {
+                        System.out.print("nhập số chứng minh cho tài khoản cần sửa: ");
+                        id2 = s2.nextInt();
+                    }while (!check.checkID2(id2));
+
+                    for (Account acc: accountList) {
+                        if (acc.getUser().getId() == id2){
+                            Scanner s1 = new Scanner(System.in);
+                            boolean isExit = true;
+                            while (isExit){
+                                System.out.println("Nhập a để thay đổi tên người dùng.");
+                                System.out.println("Nhập b để thay đổi ngày sinh.");
+                                System.out.println("Nhập c để thay đổi số điện thoại.");
+                                System.out.println("Nhập d để thay đổi mật khẩu.");
+                                System.out.println("Nhập e để thoát khỏi menu sửa. ");
+                                String type = s1.nextLine();
+                                switch (type){
+                                    case "a" :
+                                        System.out.println("Nhập tên mới");
+                                        Scanner s3 = new Scanner(System.in);
+                                        String newFullName = s3.nextLine();
+                                        acc.getUser().setFullName(newFullName);
+                                        System.out.println("đổi tên thành : " + newFullName);
+                                        System.out.println("thêm yêu cầu khác: ");
+                                        break;
+                                    case "b":
+                                        System.out.println("Nhập ngày sinh mới: ");
+                                        Scanner s4 = new Scanner(System.in);
+                                        String newDateOfBirth = s4.nextLine();
+                                        acc.getUser().setDateOfBirth(newDateOfBirth);
+                                        System.out.println("đổi ngày sinh thành: " + newDateOfBirth);
+                                        break;
+                                    case "c" :
+                                        System.out.println("Nhập số điện thoại mới: ");
+                                        Scanner s5 = new Scanner(System.in);
+                                        int newPhoneNumber = s5.nextInt();
+                                        acc.getUser().setPhoneNumber(newPhoneNumber);
+                                        System.out.println("Đổi số điện thoại thành: " + newPhoneNumber);
+                                        break;
+                                    case "d":
+                                        System.out.println("Nhập mật khẩu mới: ");
+                                        Scanner s6 = new Scanner(System.in);
+                                        int newPassWord = s6.nextInt();
+                                        acc.setPassWord(newPassWord);
+                                        System.out.println("đổi mật khẩu: " + newPassWord);
+                                        break;
+                                    case "e" :
+                                        isExit = false;
+                                        break;
+                                }
+                                dataAccount.setData(accountList);
+                            }
+                        }
+                            }
+
                     break;
                 case 4:
                     int id3;

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Check {
-    List<Account> accountList = new ArrayList<>();
+    List<Account> accountList;
 
     public Check(List<Account> accountList) {
         this.accountList = accountList;

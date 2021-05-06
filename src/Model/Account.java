@@ -17,12 +17,10 @@ public class Account implements Serializable {
 
     @Override
     public String toString() {
-        return "Account{" +
-                "user=" + user +
-                ", accountNumber=" + accountNumber +
-                ", passWord=" + passWord +
-                ", amountInAccount=" + amountInAccount +
-                '}';
+        return  user + "\n" +
+                ", Số tài khoản: " + accountNumber +
+                ", Mật khẩu: " + passWord +
+                ", Số dư trong tài khoản: " + amountInAccount;
     }
 
     public User getUser() {

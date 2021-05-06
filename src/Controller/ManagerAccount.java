@@ -52,14 +52,14 @@ public class ManagerAccount {
         dataAccount.setData(accountList);
     }
 
-//    public void editAccount(int id, Account account){
-//        for (int i = 0; i < accountList.size(); i++) {
-//            if (accountList.get(i).getUser().getId() == id) {
-//                accountList.get(i) = account;
-//            }
-//        }
-//        dataAccount.setData(accountList);
-//    }
+    public void editAccount(int id){
+        for (int i = 0; i < accountList.size(); i++) {
+            if (accountList.get(i).getUser().getId() == id) {
+
+            }
+        }
+        dataAccount.setData(accountList);
+    }
 
     public void searchByID(int id){
         for (Account account: accountList) {
