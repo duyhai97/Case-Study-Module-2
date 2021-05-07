@@ -12,13 +12,13 @@ import java.util.Scanner;
 public class Client {
     public static void main(String[] args) {
         List<Account> accountList;
-//        DataAccount fileAccounts = fileAccount.getINSTANCE();
-//        accountList = fileAccounts.getData();
-        DataAccount dataAccount = new fileAccount();
-        accountList = dataAccount.getData();
+        fileAccount fileAccounts = fileAccount.getINSTANCE();
+        accountList = fileAccounts.getData();
 
-        ManagerAccount hai = new ManagerAccount("Hải", accountList);
+        ManagerAccount hai = new ManagerAccount(accountList);
+//        ManagerAccount hai = ManagerAccount.getInstance();
         Check check = new Check(accountList);
+
 
         while (true){
             System.out.println("Mời bạn nhập lựa chọn.");
@@ -38,9 +38,12 @@ public class Client {
                     System.out.print("Nhập họ tên đầy đủ: ");
                     Scanner scanner2 = new Scanner(System.in);
                     String fullName = scanner2.nextLine();
-                    System.out.print("Nhập số chứng minh thư: ");
+                    int id;
                     Scanner scanner3 = new Scanner(System.in);
-                    int id = scanner3.nextInt();
+                    do {
+                        System.out.print("Nhập số chứng minh thư: ");
+                        id = scanner3.nextInt();
+                    }while (!check.checkID1(id));
                     System.out.print("Nhập ngày tháng năm sinh: ");
                     Scanner scanner4 = new Scanner(System.in);
                     String dateOfBirth = scanner4.nextLine();
@@ -51,11 +54,14 @@ public class Client {
                     Scanner scanner6 = new Scanner(System.in);
                     String address = scanner6.nextLine();
                     User user = new User(fullName,id, dateOfBirth,phoneNumber,address);
-
-                    System.out.println("Nhập số tài khoản: ");
+                    int accountNumber;
                     Scanner scanner7 = new Scanner(System.in);
-                    int accountNumber = scanner7.nextInt();
-                    int password = 123456;
+                    do {
+                        System.out.println("Nhập số tài khoản: ");
+                        accountNumber = scanner7.nextInt();
+                    }while (!check.checkAccountNumber1(accountNumber));
+
+                    int password = 111111;
                     double amountInAccount = 50000;
                     Account account = new Account(user, accountNumber,password, amountInAccount);
                     hai.addNewAccount(account);
@@ -118,12 +124,14 @@ public class Client {
                                     case "e" :
                                         isExit = false;
                                         break;
+                                    default:
+                                        throw new IllegalStateException("Unexpected value: " + type);
                                 }
-                                dataAccount.setData(accountList);
-                            }
-                        }
+                                fileAccounts.setData(accountList);
                             }
 
+                        }
+                    }
                     break;
                 case 4:
                     int id3;

@@ -9,15 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class fileAccount implements DataAccount{
-    public fileAccount(){
+    private fileAccount(){
     }
 
-//    private static fileAccount INSTANCE;
-//
-//    public static fileAccount getINSTANCE(){
-//        if (getINSTANCE() == null) INSTANCE = new fileAccount();
-//        return INSTANCE;
-//    }
+    private static fileAccount INSTANCE;
+
+    public static fileAccount getINSTANCE(){
+        if (INSTANCE == null) INSTANCE = new fileAccount();
+        return INSTANCE;
+    }
 
 
     @Override

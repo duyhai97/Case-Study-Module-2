@@ -1,32 +1,20 @@
 package Controller;
 
 import Model.Account;
-import Storage.DataAccount;
 import Storage.fileAccount;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class ManagerAccount {
-    private String name;
+
     private List<Account> accountList;
-//    DataAccount dataAccount = fileAccount.getINSTANCE();
-    DataAccount dataAccount = new fileAccount();
+    fileAccount dataAccount = fileAccount.getINSTANCE();
 
-    public ManagerAccount() {
+    private ManagerAccount() {
     }
 
-    public ManagerAccount(String name, List<Account> accountList) {
-        this.name = name;
+
+    public ManagerAccount(List<Account> accountList) {
         this.accountList = accountList;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public List<Account> getAccountList() {
@@ -82,7 +70,7 @@ public class ManagerAccount {
             if (account.getAccountNumber() == accountNumber){
                 if (amountToDeposit > 0 ){
                     account.setAmountInAccount(account.getAmountInAccount() + amountToDeposit);
-                    System.out.println("Bạn vừa nạp: " + amountToDeposit + "Đ vào tài khoản: " + account );
+                    System.out.println("Bạn vừa nạp: " + amountToDeposit + "Đ vào tài khoản: " + account.getAccountNumber() );
                 }
                 else System.out.println("Số tiền nạp vào không đúng.");
             }

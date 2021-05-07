@@ -12,6 +12,15 @@ public class Check {
         this.accountList = accountList;
     }
 
+    private Check(){}
+
+    private static Check Instance;
+
+    public static Check getInstance(){
+        if(Instance == null) Instance = new Check();
+        return Instance;
+    }
+
     public boolean checkID1(int id){
         for (Account account: accountList) {
             if (account.getUser().getId() == id){
