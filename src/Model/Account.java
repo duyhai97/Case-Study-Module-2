@@ -1,8 +1,13 @@
 package Model;
 
-import java.io.Serializable;
+import Observer.Observer;
+import Observer.Subject;
 
-public class Account implements Serializable {
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Account implements Serializable{
     private User user;
     private int accountNumber;
     private int passWord;
@@ -54,4 +59,7 @@ public class Account implements Serializable {
     public void setAmountInAccount(double amountInAccount) {
         this.amountInAccount = amountInAccount;
     }
+
+
+
 }

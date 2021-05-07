@@ -4,6 +4,7 @@ import Controller.Check;
 import Controller.ManagerAccount;
 import Model.Account;
 import Model.User;
+import Observer.Observer;
 import Storage.DataAccount;
 import Storage.fileAccount;
 import java.util.List;
@@ -18,8 +19,6 @@ public class Client {
         ManagerAccount hai = new ManagerAccount(accountList);
 //        ManagerAccount hai = ManagerAccount.getInstance();
         Check check = new Check(accountList);
-
-
         while (true){
             System.out.println("Mời bạn nhập lựa chọn.");
             System.out.println("1: Thêm mới tài khoản.");
@@ -47,8 +46,8 @@ public class Client {
                     System.out.print("Nhập ngày tháng năm sinh: ");
                     Scanner scanner4 = new Scanner(System.in);
                     String dateOfBirth = scanner4.nextLine();
-                    System.out.print("Nhập số điện thoại: ");
                     Scanner scanner5 = new Scanner(System.in);
+                    System.out.print("Nhập số điện thoại: ");
                     int phoneNumber = scanner5.nextInt();
                     System.out.print("Nhập địa chỉ thường trú: ");
                     Scanner scanner6 = new Scanner(System.in);

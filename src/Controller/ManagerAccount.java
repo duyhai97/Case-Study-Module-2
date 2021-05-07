@@ -1,21 +1,26 @@
 package Controller;
-
 import Model.Account;
 import Storage.fileAccount;
+
 import java.util.List;
 
-public class ManagerAccount {
+public class ManagerAccount   {
 
     private List<Account> accountList;
+
     fileAccount dataAccount = fileAccount.getINSTANCE();
-
-    private ManagerAccount() {
-    }
-
 
     public ManagerAccount(List<Account> accountList) {
         this.accountList = accountList;
     }
+
+//    private static ManagerAccount Instance;
+
+
+//    public static ManagerAccount getInstance(){
+//        if (Instance == null) Instance = new ManagerAccount();
+//        return Instance;
+//    }
 
     public List<Account> getAccountList() {
         return accountList;
