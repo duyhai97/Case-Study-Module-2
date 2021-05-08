@@ -1,6 +1,6 @@
 package controller;
 import Model.Account;
-//import storage.fileAccount;
+import storage.fileAccount;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ public class ManagerAccount   {
 
     private List<Account> accountList;
 
-//    fileAccount dataAccount = fileAccount.getINSTANCE();
+    fileAccount dataAccount = fileAccount.getINSTANCE();
 
     public ManagerAccount(List<Account> accountList) {
         this.accountList = accountList;
@@ -32,7 +32,7 @@ public class ManagerAccount   {
 
     public void addNewAccount(Account account){
         accountList.add(account);
-//        dataAccount.setData(accountList);
+        dataAccount.setData(accountList);
 
     }
 
@@ -42,16 +42,32 @@ public class ManagerAccount   {
                 accountList.remove(accountList.get(i));
             }
         }
-//        dataAccount.setData(accountList);
+        dataAccount.setData(accountList);
     }
 
-    public void editAccount(int id){
-        for (int i = 0; i < accountList.size(); i++) {
-            if (accountList.get(i).getUser().getId() == id) {
-
+    public void editAccount(int id,String newName,String newDateOfBirth,int newPhoneNumber, int newPassWord ,int cate){
+        for (Account account: accountList
+             ) {
+            switch (cate){
+                case 1:
+                    account.getUser().setFullName(newName);
+                    break;
+                case 2:
+                    account.getUser().setDateOfBirth(newDateOfBirth);
+                    break;
+                case 3:
+                    account.getUser().setPhoneNumber(newPhoneNumber);
+                    break;
+                case 4:
+                    account.setPassWord(newPassWord);
+                    break;
             }
         }
-//        dataAccount.setData(accountList);
+
+
+
+
+        dataAccount.setData(accountList);
     }
 
     public void searchByID(int id){
@@ -80,7 +96,7 @@ public class ManagerAccount   {
                 else System.out.println("Số tiền nạp vào không đúng.");
             }
         }
-//        dataAccount.setData(accountList);
+        dataAccount.setData(accountList);
     }
 
     public void withdrawal(int accountNumber, double amountToWithdrawn){
@@ -95,7 +111,7 @@ public class ManagerAccount   {
                 }
             }
         }
-//        dataAccount.setData(accountList);
+        dataAccount.setData(accountList);
     }
 
     public void transfers(int accountNumber1, int accountNumber2, double  amountToTransferred){
@@ -114,7 +130,7 @@ public class ManagerAccount   {
                 }
             }
         }
-//        dataAccount.setData(accountList);
+        dataAccount.setData(accountList);
     }
 
 }

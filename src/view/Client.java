@@ -4,30 +4,38 @@ import controller.Check;
 import controller.ManagerAccount;
 import Model.Account;
 import Model.User;
-//import storage.fileAccount;
+import observer.EmailNotification;
+import observer.PhoneNotification;
+import storage.fileAccount;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observer;
 import java.util.Scanner;
 
 public class Client {
     public static void main(String[] args) {
         List<Account> accountList = new ArrayList<>();
-//        fileAccount fileAccounts = fileAccount.getINSTANCE();
-//        accountList = fileAccounts.getData();
+        fileAccount fileAccounts = fileAccount.getINSTANCE();
+        accountList = fileAccounts.getData();
 
         ManagerAccount hai = new ManagerAccount(accountList);
 //        ManagerAccount hai = ManagerAccount.getInstance();
         Check check = new Check(accountList);
+        PhoneNotification phone = new PhoneNotification();
+        EmailNotification email = new EmailNotification();
+
+
         while (true){
             System.out.println("Chào bạn đến với menu quản lí tài khoản ngân hàng.");
             System.out.println("Nhập 1: Thêm mới tài khoản.");
             System.out.println("Nhập 2: Xóa tài khoản khỏi hệ thống.");
             System.out.println("Nhập 3: Sửa thông tin tài khoản.");
             System.out.println("Nhập 4: Hiển thị thông tin tài khoản.");
-            System.out.println("Nhập 5: Nạp tiền vào tài khoản");
-            System.out.println("Nhập 6: Rút tiền");
-            System.out.println("Nhập 7: Chuyển tiền.");
-            System.out.println("Nhập 8: Kết thúc.");
+            System.out.println("Nhập 5: Đăng kí nhận thông báo.");
+            System.out.println("Nhập 6: Nạp tiền vào tài khoản");
+            System.out.println("Nhập 7: Rút tiền");
+            System.out.println("Nhập 8: Chuyển tiền.");
+            System.out.println("Nhập 9: Kết thúc.");
             Scanner scanner1 = new Scanner(System.in);
             int choose = scanner1.nextInt();
             switch (choose){
@@ -124,7 +132,7 @@ public class Client {
                                     default:
                                         throw new IllegalStateException("Unexpected value: " + type);
                                 }
-//                                fileAccounts.setData(accountList);
+                                fileAccounts.setData(accountList);
                             }
                         }
                     }
@@ -161,6 +169,87 @@ public class Client {
                     break;
 
                 case 5:
+                    int iddk;
+                    Scanner s1 = new Scanner(System.in);
+                    do {
+                        System.out.print("Nhập số chứng minh cho tài khoản cần đăng kí: ");
+                        iddk = s1.nextInt();
+                    }while (!check.checkID2(iddk));
+
+                    for (Account acc: accountList
+                         ) {
+                        if (acc.getUser().getId() == iddk){
+                            boolean end = true;
+                            while (end){
+                                Scanner s = new Scanner(System.in);
+                                System.out.println("Nhập 1 để Đăng kí nhận thông báo: ");
+                                System.out.println("Nhập 2 Xóa nhận thông báo: ");
+                                System.out.println("Nhập 3 thoát menu.");
+                                int choice = s.nextInt();
+                                boolean end1 = true;
+                                while (end1){
+                                    switch (choice){
+                                        case 1:
+                                            System.out.println("nhập 1 để nhận thông báo qua điện thoại.");
+                                            System.out.println("nhập 2 để nhận thông báo qua Email.");
+                                            System.out.println("nhập 3 thoát menu đăng kí thông báo. ");
+                                            Scanner s2 = new Scanner(System.in);
+                                            int choice1 = s2.nextInt();
+                                            boolean end2 = true;
+                                            while (end2){
+                                                switch (choice1){
+                                                    case 1:
+                                                        acc.add(phone);
+                                                        System.out.println("đăng kí thành công. Thêm lựa chọn khác: ");
+                                                        break;
+                                                    case 2:
+                                                        acc.add(email);
+                                                        System.out.println("Đăng kí thành công. Thêm lựa chon khác: ");
+                                                        break;
+                                                    case 3:
+                                                        end2 = false;
+                                                        break;
+                                                }
+                                            }
+
+                                            break;
+                                        case 2:
+                                            System.out.println("nhập 1 để hủy đăng kí tin nhắn qua điện thoại");
+                                            System.out.println("nhập 2 để hủy đăng kí tin nhắn qua email");
+                                            System.out.println("nhập 3 thoát nemu hủy đăng kí: ");
+                                            Scanner s3 = new Scanner(System.in);
+                                            int choice2 = s3.nextInt();
+                                            boolean end3 = true;
+                                            while (end3){
+                                                switch (choice2){
+                                                    case 1:
+                                                        acc.delete(phone);
+                                                        System.out.println("Hủy thành công. Thêm lựa chon khác: ");
+                                                        break;
+                                                    case 2:
+                                                        acc.delete(email);
+                                                        System.out.println("Hủy thành công. Thêm lựa chon khác: ");
+                                                        break;
+                                                    case 3:
+                                                        end3 = false;
+                                                        break;
+                                                }
+                                            }
+
+                                            break;
+
+                                        case 3:
+                                            end1 = false;
+                                            break;
+                                     }
+                                }
+                            }
+                            fileAccounts.setData(accountList);
+                        }
+                    }
+                    break;
+
+                case 6:
                     int accountNumber1;
                     Scanner scanner17 = new Scanner(System.in);
                     do {
@@ -179,7 +268,7 @@ public class Client {
                     hai.inputMoney(accountNumber1, amountToDeposit);
                     break;
 
-                case 6:
+                case 7:
                     Scanner scanner20 = new Scanner(System.in);
                     int accountNumber2;
                     do {
@@ -201,7 +290,7 @@ public class Client {
                     hai.withdrawal(accountNumber2, amountToWithdrawn);
                     break;
 
-                case 7:
+                case 8:
                     int accountNumber3;
                     Scanner scanner23 = new Scanner(System.in);
                     do {
@@ -228,7 +317,7 @@ public class Client {
                     }while (!check.checkAmountInAccount(amountToTransferred));
                     hai.transfers(accountNumber3,accountNumber4,amountToTransferred);
                     break;
-                case 8:
+                case 9:
                     return;
                 default:
                     System.out.println("Nhập sai thông tin Menu.");
