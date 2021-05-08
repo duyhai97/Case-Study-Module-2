@@ -4,15 +4,16 @@ import controller.Check;
 import controller.ManagerAccount;
 import Model.Account;
 import Model.User;
-import storage.fileAccount;
+//import storage.fileAccount;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Client {
     public static void main(String[] args) {
-        List<Account> accountList;
-        fileAccount fileAccounts = fileAccount.getINSTANCE();
-        accountList = fileAccounts.getData();
+        List<Account> accountList = new ArrayList<>();
+//        fileAccount fileAccounts = fileAccount.getINSTANCE();
+//        accountList = fileAccounts.getData();
 
         ManagerAccount hai = new ManagerAccount(accountList);
 //        ManagerAccount hai = ManagerAccount.getInstance();
@@ -123,7 +124,7 @@ public class Client {
                                     default:
                                         throw new IllegalStateException("Unexpected value: " + type);
                                 }
-                                fileAccounts.setData(accountList);
+//                                fileAccounts.setData(accountList);
                             }
                         }
                     }
