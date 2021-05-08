@@ -75,7 +75,7 @@ public class ManagerAccount   {
             if (account.getAccountNumber() == accountNumber){
                 if (amountToDeposit > 0 ){
                     account.setAmountInAccount(account.getAmountInAccount() + amountToDeposit);
-                    account.notification("Bạn vừa nạp: " + amountToDeposit, account);
+                    account.notification(  account.getUser().getFullName()+ " vừa nạp: " + amountToDeposit, account);
 //                    System.out.println("Bạn vừa nạp: " + amountToDeposit + "Đ vào tài khoản: " + account.getAccountNumber() );
                 }
                 else System.out.println("Số tiền nạp vào không đúng.");
@@ -91,7 +91,7 @@ public class ManagerAccount   {
             if (account.getAccountNumber() == accountNumber){
                 if (account.getAmountInAccount() > (amountToWithdrawn + fees)){
                     account.setAmountInAccount(account.getAmountInAccount() - (amountToWithdrawn + fees));
-                    account.notification("Bạn đã rút: " + amountToWithdrawn, account);
+                    account.notification(account.getUser().getFullName()+ " đã rút: " + amountToWithdrawn, account);
 //                    System.out.println("Bạn vừa rút: " + amountToWithdrawn + "Đ từ số tài khoản: " + account.getAccountNumber() + ". Phí dịch vụ: " + fees + "Đ");
                 }
             }
@@ -108,9 +108,8 @@ public class ManagerAccount   {
                         if (account2.getAccountNumber() == accountNumber2){
                             account1.setAmountInAccount(account1.getAmountInAccount() - (amountToTransferred + fees));
                             account2.setAmountInAccount(account2.getAmountInAccount() + amountToTransferred);
-                            account1.notification("Chuyển cho " + account2.getUser().getFullName() + ": " + amountToTransferred, account1);
-                            account2.notification("Nhận được: " + amountToTransferred, account2 );
-//                          System.out.println("Bạn vừa chuyển: " + amountToTransferred + "Đ từ số tài khoản: " + account1.getAccountNumber() + " Đến số tài khoản: " + account2.getAccountNumber() + ". Phí dịch vụ " + fees );
+                            account1.notification( account1.getUser().getFullName() +" Chuyển cho " + account2.getUser().getFullName() + ": " + amountToTransferred, account2);
+                            account2.notification(account2.getUser().getFullName()+" Nhận được: " + amountToTransferred, account1 );
                         }
                     }
                 }
