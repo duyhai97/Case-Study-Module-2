@@ -1,11 +1,6 @@
 package Model;
 
-import Observer.Observer;
-import Observer.Subject;
-
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Account implements Serializable{
     private User user;

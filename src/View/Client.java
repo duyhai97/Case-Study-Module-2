@@ -1,12 +1,10 @@
 package View;
 
-import Controller.Check;
-import Controller.ManagerAccount;
+import controller.Check;
+import controller.ManagerAccount;
 import Model.Account;
 import Model.User;
-import Observer.Observer;
-import Storage.DataAccount;
-import Storage.fileAccount;
+import storage.fileAccount;
 import java.util.List;
 import java.util.Scanner;
 
@@ -20,16 +18,15 @@ public class Client {
 //        ManagerAccount hai = ManagerAccount.getInstance();
         Check check = new Check(accountList);
         while (true){
-            System.out.println("Mời bạn nhập lựa chọn.");
-            System.out.println("1: Thêm mới tài khoản.");
-            System.out.println("2: Xóa tài khoản khỏi hệ thống.");
-            System.out.println("3: Sửa thông tin tài khoản.");
-            System.out.println("4: Tìm kiếm tài khoản theo số chứng minh.");
-            System.out.println("5: Hiển thị tất cả tài khoản.");
-            System.out.println("6: Nạp tiền vào tài khoản");
-            System.out.println("7: Rút tiền");
-            System.out.println("8: Chuyển tiền.");
-            System.out.println("9: Kết thúc.");
+            System.out.println("Chào bạn đến với menu quản lí tài khoản ngân hàng.");
+            System.out.println("Nhập 1: Thêm mới tài khoản.");
+            System.out.println("Nhập 2: Xóa tài khoản khỏi hệ thống.");
+            System.out.println("Nhập 3: Sửa thông tin tài khoản.");
+            System.out.println("Nhập 4: Hiển thị thông tin tài khoản.");
+            System.out.println("Nhập 5: Nạp tiền vào tài khoản");
+            System.out.println("Nhập 6: Rút tiền");
+            System.out.println("Nhập 7: Chuyển tiền.");
+            System.out.println("Nhập 8: Kết thúc.");
             Scanner scanner1 = new Scanner(System.in);
             int choose = scanner1.nextInt();
             switch (choose){
@@ -72,55 +69,55 @@ public class Client {
                     hai.deleteAccount(id1);
                     break;
                 case 3:
-                    Scanner s2 = new Scanner(System.in);
+                    Scanner scanner9 = new Scanner(System.in);
                     int id2;
                     do {
                         System.out.print("nhập số chứng minh cho tài khoản cần sửa: ");
-                        id2 = s2.nextInt();
+                        id2 = scanner9.nextInt();
                     }while (!check.checkID2(id2));
 
                     for (Account acc: accountList) {
                         if (acc.getUser().getId() == id2){
-                            Scanner s1 = new Scanner(System.in);
+                            Scanner scanner10 = new Scanner(System.in);
                             boolean isExit = true;
                             while (isExit){
-                                System.out.println("Nhập a để thay đổi tên người dùng.");
-                                System.out.println("Nhập b để thay đổi ngày sinh.");
-                                System.out.println("Nhập c để thay đổi số điện thoại.");
-                                System.out.println("Nhập d để thay đổi mật khẩu.");
-                                System.out.println("Nhập e để thoát khỏi menu sửa. ");
-                                String type = s1.nextLine();
+                                System.out.println("Nhập 1 để thay đổi tên người dùng.");
+                                System.out.println("Nhập 2 để thay đổi ngày sinh.");
+                                System.out.println("Nhập 3 để thay đổi số điện thoại.");
+                                System.out.println("Nhập 4 để thay đổi mật khẩu.");
+                                System.out.println("Nhập 5 để thoát khỏi menu sửa. ");
+                                int type = scanner10.nextInt();
                                 switch (type){
-                                    case "a" :
+                                    case 1 :
                                         System.out.println("Nhập tên mới");
-                                        Scanner s3 = new Scanner(System.in);
-                                        String newFullName = s3.nextLine();
+                                        Scanner scanner11 = new Scanner(System.in);
+                                        String newFullName = scanner11.nextLine();
                                         acc.getUser().setFullName(newFullName);
                                         System.out.println("đổi tên thành : " + newFullName);
                                         System.out.println("thêm yêu cầu khác: ");
                                         break;
-                                    case "b":
+                                    case 2:
                                         System.out.println("Nhập ngày sinh mới: ");
-                                        Scanner s4 = new Scanner(System.in);
-                                        String newDateOfBirth = s4.nextLine();
+                                        Scanner scanner12 = new Scanner(System.in);
+                                        String newDateOfBirth = scanner12.nextLine();
                                         acc.getUser().setDateOfBirth(newDateOfBirth);
                                         System.out.println("đổi ngày sinh thành: " + newDateOfBirth);
                                         break;
-                                    case "c" :
+                                    case 3 :
                                         System.out.println("Nhập số điện thoại mới: ");
-                                        Scanner s5 = new Scanner(System.in);
-                                        int newPhoneNumber = s5.nextInt();
+                                        Scanner scanner13 = new Scanner(System.in);
+                                        int newPhoneNumber = scanner13.nextInt();
                                         acc.getUser().setPhoneNumber(newPhoneNumber);
                                         System.out.println("Đổi số điện thoại thành: " + newPhoneNumber);
                                         break;
-                                    case "d":
+                                    case 4:
                                         System.out.println("Nhập mật khẩu mới: ");
-                                        Scanner s6 = new Scanner(System.in);
-                                        int newPassWord = s6.nextInt();
+                                        Scanner scanner14 = new Scanner(System.in);
+                                        int newPassWord = scanner14.nextInt();
                                         acc.setPassWord(newPassWord);
                                         System.out.println("đổi mật khẩu: " + newPassWord);
                                         break;
-                                    case "e" :
+                                    case 5 :
                                         isExit = false;
                                         break;
                                     default:
@@ -128,96 +125,112 @@ public class Client {
                                 }
                                 fileAccounts.setData(accountList);
                             }
-
                         }
                     }
                     break;
+
                 case 4:
-                    int id3;
-                    Scanner scanner9 = new Scanner(System.in);
-                    do {
-                        System.out.print("Nhập số chứng minh thư để tìm kiếm tài khoản: ");
-                        id3 = scanner9.nextInt();
-                    }while (!check.checkID2(id3));
-                    hai.searchByID(id3);
+                    boolean exit = true;
+                    while (exit){
+                        Scanner scanner15 = new Scanner(System.in);
+                        System.out.println("nhập 1 để tìm kiếm theo số chứng minh thư: ");
+                        System.out.println("nhâp 2 để hiển thị tất cả tài khoản ");
+                        System.out.println("nhaap3 để thoát khỏi menu tìm kiếm.");
+                        int choice = scanner15.nextInt();
+                        switch (choice){
+                            case 1:
+                                int id3;
+                                Scanner scanner16 = new Scanner(System.in);
+                                do {
+                                    System.out.print("Nhập số chứng minh thư để tìm kiếm tài khoản: ");
+                                    id3 = scanner16.nextInt();
+                                }while (!check.checkID2(id3));
+                                hai.searchByID(id3);
+                                System.out.println("Tìm kiếm thêm: ");
+                                break;
+                            case 2:
+                                hai.showAllAccount();
+                                System.out.println("Tìm kiếm thêm: ");
+                                break;
+                            case 3:
+                                exit = false;
+                                break;
+                        }
+                    }
                     break;
+
                 case 5:
-                    hai.showAllAccount();
-                    break;
-                case 6:
                     int accountNumber1;
-                    Scanner scanner10 = new Scanner(System.in);
+                    Scanner scanner17 = new Scanner(System.in);
                     do {
                         System.out.print("Nhập số tài khoản cần nạp tiền: ");
-                        accountNumber1 = scanner10.nextInt();
+                        accountNumber1 = scanner17.nextInt();
                     }while (!check.checkAccountNumber2(accountNumber1));
-                    Scanner scanner11 = new Scanner(System.in);
+                    Scanner scanner18 = new Scanner(System.in);
                     int passWord1;
                     do {
                         System.out.print("Nhập mật khẩu: ");
-                        passWord1 = scanner11.nextInt();
+                        passWord1 = scanner18.nextInt();
                     }while (!check.checkPassWord(passWord1));
-                    Scanner scanner12 = new Scanner(System.in);
+                    Scanner scanner19 = new Scanner(System.in);
                     System.out.println("Nhập số tiền cần nạp");
-                    double amountToDeposit = scanner12.nextDouble();
+                    double amountToDeposit = scanner19.nextDouble();
                     hai.inputMoney(accountNumber1, amountToDeposit);
                     break;
 
-                case 7:
-                    Scanner scanner13 = new Scanner(System.in);
+                case 6:
+                    Scanner scanner20 = new Scanner(System.in);
                     int accountNumber2;
                     do {
                         System.out.print("Nhập số tài khoản rút tiền: ");
-                        accountNumber2 = scanner13.nextInt();
+                        accountNumber2 = scanner20.nextInt();
                     }while (!check.checkAccountNumber2(accountNumber2));
                     double amountToWithdrawn;
-                    Scanner scanner14 = new Scanner(System.in);
+                    Scanner scanner21 = new Scanner(System.in);
                     do {
                         System.out.print("Nhập số tiền cần rút: ");
-                        amountToWithdrawn = scanner14.nextDouble();
+                        amountToWithdrawn = scanner21.nextDouble();
                     }while (!check.checkAmountInAccount(amountToWithdrawn));
-                    Scanner scanner15 = new Scanner(System.in);
+                    Scanner scanner22 = new Scanner(System.in);
                     int password2;
                     do {
                         System.out.print("Nhập mật khẩu: ");
-                        password2 = scanner15.nextInt();
+                        password2 = scanner22.nextInt();
                     }while (!check.checkPassWord(password2));
                     hai.withdrawal(accountNumber2, amountToWithdrawn);
                     break;
 
-                case 8:
+                case 7:
                     int accountNumber3;
-                    Scanner scanner16 = new Scanner(System.in);
+                    Scanner scanner23 = new Scanner(System.in);
                     do {
                         System.out.print("Nhập số tài khoản chuyển tiền: ");
-                        accountNumber3 = scanner16.nextInt();
+                        accountNumber3 = scanner23.nextInt();
                     }while (!check.checkAccountNumber2(accountNumber3));
                     int password3;
-                    Scanner scanner17 = new Scanner(System.in);
+                    Scanner scanner24 = new Scanner(System.in);
                     do {
                         System.out.print("Nhập mật khẩu: ");
-                        password3 = scanner17.nextInt();
+                        password3 = scanner24.nextInt();
                     }while (!check.checkPassWord(password3));
                     int accountNumber4;
-                    Scanner scanner18 = new Scanner(System.in);
+                    Scanner scanner25 = new Scanner(System.in);
                     do {
                         System.out.print("Nhập số tài khoản nhận: ");
-                        accountNumber4 = scanner18.nextInt();
+                        accountNumber4 = scanner25.nextInt();
                     }while (!check.checkAccountNumber2(accountNumber4));
                     double amountToTransferred;
-                    Scanner scanner19 = new Scanner(System.in);
+                    Scanner scanner26 = new Scanner(System.in);
                     do {
                         System.out.print("Nhập số tiền cần chuyển: ");
-                        amountToTransferred = scanner19.nextDouble();
+                        amountToTransferred = scanner26.nextDouble();
                     }while (!check.checkAmountInAccount(amountToTransferred));
                     hai.transfers(accountNumber3,accountNumber4,amountToTransferred);
                     break;
-                case 9:
+                case 8:
                     return;
                 default:
                     System.out.println("Nhập sai thông tin Menu.");
-
-
             }
         }
     }

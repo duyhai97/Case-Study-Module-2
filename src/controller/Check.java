@@ -1,8 +1,7 @@
-package Controller;
+package controller;
 
 import Model.Account;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Check {

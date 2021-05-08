@@ -1,6 +1,6 @@
-package Controller;
+package controller;
 import Model.Account;
-import Storage.fileAccount;
+import storage.fileAccount;
 
 import java.util.List;
 
