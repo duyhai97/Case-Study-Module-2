@@ -22,7 +22,7 @@ public class fileAccount implements DataAccount{
 
     @Override
     public List<Account> getData() {
-        File file = new File("File1.txt");
+        File file = new File("file.txt");
         if (!file.exists()){
             try {
                 file.createNewFile();
@@ -59,7 +59,7 @@ public class fileAccount implements DataAccount{
 
     @Override
     public void setData(List<Account> accounts) {
-        File file = new File("File1.txt");
+        File file = new File("file.txt");
         if (!file.exists()) {
             try {
                 file.createNewFile();

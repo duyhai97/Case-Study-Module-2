@@ -81,6 +81,15 @@ public class Account implements Serializable, Subject {
     }
 
     @Override
+    public void notification1(String mess) {
+        System.out.println(user.getFullName() + ": ");
+        for (Observer ob: observerList
+             ) {
+            ob.update(mess);
+        }
+    }
+
+    @Override
     public void notification(String mess, Subject subject) {
         System.out.println(user.getFullName() + ": ");
         for (Observer o: observerList

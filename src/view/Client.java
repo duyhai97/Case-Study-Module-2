@@ -4,6 +4,7 @@ import controller.Check;
 import controller.ManagerAccount;
 import Model.Account;
 import Model.User;
+import observer.AppNotification;
 import observer.EmailNotification;
 import observer.PhoneNotification;
 import storage.fileAccount;
@@ -23,6 +24,7 @@ public class Client {
         Check check = new Check(accountList);
         PhoneNotification phone = new PhoneNotification();
         EmailNotification email = new EmailNotification();
+        AppNotification app = new AppNotification();
 
 
         while (true){
@@ -178,26 +180,25 @@ public class Client {
 
                     for (Account acc: accountList
                          ) {
-                        if (acc.getUser().getId() == iddk){
-                            boolean end = true;
-                            while (end){
+                        if (acc.getUser().getId() == iddk) {
+                            boolean thoat = true;
+                            while (thoat) {
                                 Scanner s = new Scanner(System.in);
                                 System.out.println("Nhập 1 để Đăng kí nhận thông báo: ");
-                                System.out.println("Nhập 2 Xóa nhận thông báo: ");
+                                System.out.println("Nhập 2 để hủy nhận thông báo: ");
                                 System.out.println("Nhập 3 thoát menu.");
-                                int choice = s.nextInt();
-                                boolean end1 = true;
-                                while (end1){
-                                    switch (choice){
+                                int choice5 = s.nextInt();
+                                    switch (choice5) {
                                         case 1:
-                                            System.out.println("nhập 1 để nhận thông báo qua điện thoại.");
-                                            System.out.println("nhập 2 để nhận thông báo qua Email.");
-                                            System.out.println("nhập 3 thoát menu đăng kí thông báo. ");
-                                            Scanner s2 = new Scanner(System.in);
-                                            int choice1 = s2.nextInt();
                                             boolean end2 = true;
-                                            while (end2){
-                                                switch (choice1){
+                                            while (end2) {
+                                                System.out.println("nhập 1 để nhận thông báo qua điện thoại.");
+                                                System.out.println("nhập 2 để nhận thông báo qua Email.");
+                                                System.out.println("nhập 3 để nhận thông báo qua App");
+                                                System.out.println("nhập 4 thoát menu đăng kí thông báo. ");
+                                                Scanner s6 = new Scanner(System.in);
+                                                int choice1 = s6.nextInt();
+                                                switch (choice1) {
                                                     case 1:
                                                         acc.add(phone);
                                                         System.out.println("đăng kí thành công. Thêm lựa chọn khác: ");
@@ -206,7 +207,12 @@ public class Client {
                                                         acc.add(email);
                                                         System.out.println("Đăng kí thành công. Thêm lựa chon khác: ");
                                                         break;
+
                                                     case 3:
+                                                        acc.add(app);
+                                                        System.out.println("Đăng kí thành công. Thên lựa chon khác: ");
+                                                        break;
+                                                    case 4:
                                                         end2 = false;
                                                         break;
                                                 }
@@ -214,13 +220,14 @@ public class Client {
 
                                             break;
                                         case 2:
-                                            System.out.println("nhập 1 để hủy đăng kí tin nhắn qua điện thoại");
-                                            System.out.println("nhập 2 để hủy đăng kí tin nhắn qua email");
-                                            System.out.println("nhập 3 thoát nemu hủy đăng kí: ");
-                                            Scanner s3 = new Scanner(System.in);
-                                            int choice2 = s3.nextInt();
                                             boolean end3 = true;
                                             while (end3){
+                                                System.out.println("nhập 1 để hủy đăng kí thông báo qua điện thoại");
+                                                System.out.println("nhập 2 để hủy đăng kí thông báo qua email");
+                                                System.out.println("nhập 3 để hủy đăng kí thông báo qua App");
+                                                System.out.println("nhập 4 thoát nemu hủy đăng kí: ");
+                                                Scanner s7 = new Scanner(System.in);
+                                                int choice2 = s7.nextInt();
                                                 switch (choice2){
                                                     case 1:
                                                         acc.delete(phone);
@@ -231,22 +238,24 @@ public class Client {
                                                         System.out.println("Hủy thành công. Thêm lựa chon khác: ");
                                                         break;
                                                     case 3:
+                                                        acc.delete(app);
+                                                        System.out.println("Hủy thành công. Thêm lựa chọn khác: ");
+                                                        break;
+                                                    case 4:
                                                         end3 = false;
                                                         break;
                                                 }
                                             }
-
                                             break;
 
                                         case 3:
-                                            end1 = false;
+                                            thoat = false;
                                             break;
-                                     }
+                                    }
+                                    fileAccounts.setData(accountList);
                                 }
                             }
-                            fileAccounts.setData(accountList);
                         }
-                    }
                     break;
 
                 case 6:
