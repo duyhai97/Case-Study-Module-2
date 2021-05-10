@@ -4,5 +4,6 @@ public interface Subject {
         void delete (Observer observer);
         void notification1(String mess);
         void notification (String mess, Subject s);
+//        boolean check(Observer observer);
     }
 

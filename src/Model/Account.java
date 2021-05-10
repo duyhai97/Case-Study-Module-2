@@ -34,7 +34,7 @@ public class Account implements Serializable, Subject {
         return  user + "\n" +
                 ", Số tài khoản: " + accountNumber +
                 ", Mật khẩu: " + passWord +
-                ", Số dư trong tài khoản: " + amountInAccount;
+                ", Số dư trong tài khoản: " + amountInAccount + "Đ";
     }
 
     public User getUser() {
@@ -92,16 +92,23 @@ public class Account implements Serializable, Subject {
     @Override
     public void notification(String mess, Subject subject) {
         System.out.println(user.getFullName() + ": ");
-        for (Observer o: observerList
-             ) {
+        for (Observer o: observerList) {
             o.update(mess);
         }
 
         System.out.println(((Account) subject).getUser().getFullName() + ": ");
-        for (Observer ob: ((Account) subject).getObserverList()
-        ) {
+        for (Observer ob: ((Account) subject).getObserverList()) {
             ob.update(mess);
         }
-
     }
+
+//    @Override
+//    public boolean check(Observer observer) {
+//        for (Observer obs: observerList) {
+//            if (obs.equals(observerList.contains(getUser().getFullName()))){
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 }

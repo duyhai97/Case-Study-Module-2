@@ -14,13 +14,6 @@ public class ManagerAccount   {
         this.accountList = accountList;
     }
 
-//    private static ManagerAccount Instance;
-
-
-//    public static ManagerAccount getInstance(){
-//        if (Instance == null) Instance = new ManagerAccount();
-//        return Instance;
-//    }
 
     public List<Account> getAccountList() {
         return accountList;
@@ -91,7 +84,7 @@ public class ManagerAccount   {
             if (account.getAccountNumber() == accountNumber){
                 if (amountToDeposit > 0 ){
                     account.setAmountInAccount(account.getAmountInAccount() + amountToDeposit);
-                    account.notification1(  account.getUser().getFullName()+ " vừa nạp: " + amountToDeposit);
+                    account.notification1(  account.getUser().getFullName()+ " vừa nạp: " + amountToDeposit + "Đ");
                 }
                 else System.out.println("Số tiền nạp vào không đúng.");
             }
@@ -106,7 +99,7 @@ public class ManagerAccount   {
             if (account.getAccountNumber() == accountNumber){
                 if (account.getAmountInAccount() > (amountToWithdrawn + fees)){
                     account.setAmountInAccount(account.getAmountInAccount() - (amountToWithdrawn + fees));
-                    account.notification1(account.getUser().getFullName()+ " đã rút: " + amountToWithdrawn);
+                    account.notification1(account.getUser().getFullName()+ " đã rút: " + amountToWithdrawn + "Đ");
 
                 }
             }
@@ -123,7 +116,7 @@ public class ManagerAccount   {
                         if (account2.getAccountNumber() == accountNumber2){
                             account1.setAmountInAccount(account1.getAmountInAccount() - (amountToTransferred + fees));
                             account2.setAmountInAccount(account2.getAmountInAccount() + amountToTransferred);
-                            account1.notification( account1.getUser().getFullName() +" Chuyển cho " + account2.getUser().getFullName() + ": " + amountToTransferred, account2);
+                            account1.notification( account1.getUser().getFullName() +" Chuyển cho " + account2.getUser().getFullName() + ": " + amountToTransferred + "Đ", account2);
                         }
                     }
                 }

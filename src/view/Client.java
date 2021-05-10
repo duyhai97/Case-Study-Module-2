@@ -8,19 +8,15 @@ import observer.AppNotification;
 import observer.EmailNotification;
 import observer.PhoneNotification;
 import storage.fileAccount;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Observer;
 import java.util.Scanner;
 
 public class Client {
     public static void main(String[] args) {
-        List<Account> accountList = new ArrayList<>();
+        List<Account> accountList;
         fileAccount fileAccounts = fileAccount.getINSTANCE();
         accountList = fileAccounts.getData();
-
         ManagerAccount hai = new ManagerAccount(accountList);
-//        ManagerAccount hai = ManagerAccount.getInstance();
         Check check = new Check(accountList);
         PhoneNotification phone = new PhoneNotification();
         EmailNotification email = new EmailNotification();
@@ -74,10 +70,14 @@ public class Client {
                     hai.addNewAccount(account);
                     break;
                 case 2:
-                    System.out.print("Nhập số chứng minh cho tài khoản cần xóa: ");
+                    int id1;
                     Scanner scanner8 = new Scanner(System.in);
-                    int id1 = scanner8.nextInt();
+                    do {
+                        System.out.print("Nhập số chứng minh cho tài khoản cần xóa: ");
+                        id1 = scanner8.nextInt();
+                    }while (!check.checkID2(id1));
                     hai.deleteAccount(id1);
+                    System.out.println("Xóa tài khoản thành công.");
                     break;
                 case 3:
                     Scanner scanner9 = new Scanner(System.in);
@@ -104,29 +104,28 @@ public class Client {
                                         Scanner scanner11 = new Scanner(System.in);
                                         String newFullName = scanner11.nextLine();
                                         acc.getUser().setFullName(newFullName);
-                                        System.out.println("đổi tên thành : " + newFullName);
-                                        System.out.println("thêm yêu cầu khác: ");
+                                        acc.notification1("Đổi tên thành công. Thêm yêu cầu khác: " );
                                         break;
                                     case 2:
                                         System.out.println("Nhập ngày sinh mới: ");
                                         Scanner scanner12 = new Scanner(System.in);
                                         String newDateOfBirth = scanner12.nextLine();
                                         acc.getUser().setDateOfBirth(newDateOfBirth);
-                                        System.out.println("đổi ngày sinh thành: " + newDateOfBirth);
+                                        acc.notification1("Đổi Ngày sinh thành công. Thêm yêu cầu khác: " );
                                         break;
                                     case 3 :
                                         System.out.println("Nhập số điện thoại mới: ");
                                         Scanner scanner13 = new Scanner(System.in);
                                         int newPhoneNumber = scanner13.nextInt();
                                         acc.getUser().setPhoneNumber(newPhoneNumber);
-                                        System.out.println("Đổi số điện thoại thành: " + newPhoneNumber);
+                                        acc.notification1("Đổi số điện thoại thành công. Thêm yêu cầu khác: " );
                                         break;
                                     case 4:
                                         System.out.println("Nhập mật khẩu mới: ");
                                         Scanner scanner14 = new Scanner(System.in);
                                         int newPassWord = scanner14.nextInt();
                                         acc.setPassWord(newPassWord);
-                                        System.out.println("đổi mật khẩu: " + newPassWord);
+                                        acc.notification1("Đổi mật khẩu thành công. Thêm yêu cầu khác: " );
                                         break;
                                     case 5 :
                                         isExit = false;
