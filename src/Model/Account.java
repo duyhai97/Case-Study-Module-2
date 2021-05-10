@@ -2,6 +2,7 @@ package Model;
 
 import observer.Observer;
 import observer.Subject;
+import storage.fileAccount;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class Account implements Serializable, Subject {
 
     @Override
     public String toString() {
-        return  user + "\n" +
+        return  user  +
                 ", Số tài khoản: " + accountNumber +
                 ", Mật khẩu: " + passWord +
                 ", Số dư trong tài khoản: " + amountInAccount + "Đ";
@@ -70,6 +71,8 @@ public class Account implements Serializable, Subject {
     }
 
 
+//    fileAccount fileAccount = storage.fileAccount.getINSTANCE();
+
     @Override
     public void add(Observer observer) {
         observerList.add(observer);
@@ -77,7 +80,8 @@ public class Account implements Serializable, Subject {
 
     @Override
     public void delete(Observer observer) {
-    observerList.remove(observer);
+        observerList.remove(observer);
+        System.out.println(observerList.size());
     }
 
     @Override
@@ -105,7 +109,7 @@ public class Account implements Serializable, Subject {
 //    @Override
 //    public boolean check(Observer observer) {
 //        for (Observer obs: observerList) {
-//            if (obs.equals(observerList.contains(getUser().getFullName()))){
+//
 //                return true;
 //            }
 //        }

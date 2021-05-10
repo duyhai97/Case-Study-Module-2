@@ -4,7 +4,7 @@ import storage.fileAccount;
 
 import java.util.List;
 
-public class ManagerAccount   {
+public class ManagerAccount {
 
     private List<Account> accountList;
 
@@ -56,10 +56,6 @@ public class ManagerAccount   {
                     break;
             }
         }
-
-
-
-
         dataAccount.setData(accountList);
     }
 
@@ -86,7 +82,6 @@ public class ManagerAccount   {
                     account.setAmountInAccount(account.getAmountInAccount() + amountToDeposit);
                     account.notification1(  account.getUser().getFullName()+ " vừa nạp: " + amountToDeposit + "Đ");
                 }
-                else System.out.println("Số tiền nạp vào không đúng.");
             }
         }
         dataAccount.setData(accountList);

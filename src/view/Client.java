@@ -185,7 +185,8 @@ public class Client {
                                 Scanner s = new Scanner(System.in);
                                 System.out.println("Nhập 1 để Đăng kí nhận thông báo: ");
                                 System.out.println("Nhập 2 để hủy nhận thông báo: ");
-                                System.out.println("Nhập 3 thoát menu.");
+                                System.out.println("Nhập 3 kiểm tra trạng thái.");
+                                System.out.println("Nhập 4 quay lại.");
                                 int choice5 = s.nextInt();
                                     switch (choice5) {
                                         case 1:
@@ -215,6 +216,7 @@ public class Client {
                                                         end2 = false;
                                                         break;
                                                 }
+                                                fileAccounts.setData(accountList);
                                             }
 
                                             break;
@@ -244,10 +246,13 @@ public class Client {
                                                         end3 = false;
                                                         break;
                                                 }
+                                                fileAccounts.setData(accountList);
                                             }
                                             break;
 
                                         case 3:
+                                            break;
+                                        case 4:
                                             thoat = false;
                                             break;
                                     }
