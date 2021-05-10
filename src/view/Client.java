@@ -177,9 +177,12 @@ public class Client {
                         iddk = s1.nextInt();
                     }while (!check.checkID2(iddk));
 
-                    for (Account acc: accountList
-                         ) {
-                        if (acc.getUser().getId() == iddk) {
+//                    for (Account acc: accountList
+//                         ) {
+//                        if (acc.getUser().getId() == iddk) {
+                    for (int i = 0; i <accountList.size() ; i++) {
+                        if (accountList.get(i).getUser().getId() == iddk){
+                        Account acc =      accountList.get(i);
                             boolean thoat = true;
                             while (thoat) {
                                 Scanner s = new Scanner(System.in);
@@ -251,6 +254,9 @@ public class Client {
                                             break;
 
                                         case 3:
+                                            System.out.println(acc.getAllObserver());
+
+
                                             break;
                                         case 4:
                                             thoat = false;

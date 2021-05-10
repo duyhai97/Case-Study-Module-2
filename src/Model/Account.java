@@ -1,7 +1,6 @@
 package Model;
 
-import observer.Observer;
-import observer.Subject;
+import observer.*;
 import storage.fileAccount;
 
 import java.io.Serializable;
@@ -71,8 +70,6 @@ public class Account implements Serializable, Subject {
     }
 
 
-//    fileAccount fileAccount = storage.fileAccount.getINSTANCE();
-
     @Override
     public void add(Observer observer) {
         observerList.add(observer);
@@ -86,33 +83,45 @@ public class Account implements Serializable, Subject {
 
     @Override
     public void notification1(String mess) {
-        System.out.println(user.getFullName() + ": ");
-        for (Observer ob: observerList
-             ) {
-            ob.update(mess);
+        if (observerList.size() > 0){
+            System.out.println(user.getFullName() + ": ");
+            for (Observer ob: observerList
+            ) {
+
+                ob.update(mess);
+            }
         }
     }
 
     @Override
     public void notification(String mess, Subject subject) {
-        System.out.println(user.getFullName() + ": ");
-        for (Observer o: observerList) {
-            o.update(mess);
+        if (observerList.size() > 0){
+            System.out.println(user.getFullName() + ": ");
+            for (Observer o: observerList) {
+                o.update(mess);
+            }
         }
-
-        System.out.println(((Account) subject).getUser().getFullName() + ": ");
-        for (Observer ob: ((Account) subject).getObserverList()) {
-            ob.update(mess);
+        if (observerList.size() > 0){
+            System.out.println(((Account) subject).getUser().getFullName() + ": ");
+            for (Observer ob: ((Account) subject).getObserverList()) {
+                ob.update(mess);
+            }
         }
     }
 
-//    @Override
-//    public boolean check(Observer observer) {
-//        for (Observer obs: observerList) {
-//
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
+
+    public String getAllObserver(){
+        if (observerList.size() > 0){
+            String s = " ";
+            for (Observer o: observerList
+                 ) {
+                if (o instanceof AppNotification) s += "App, ";
+                if (o instanceof EmailNotification) s += "Email, ";
+                if (o instanceof PhoneNotification) s += "Phone";
+
+            }
+            return s;
+        }
+        else return "Chưa đăng kí.";
+    }
 }
