@@ -145,7 +145,7 @@ public class Client {
                         Scanner scanner15 = new Scanner(System.in);
                         System.out.println("nhập 1 để tìm kiếm theo số chứng minh thư: ");
                         System.out.println("nhâp 2 để hiển thị tất cả tài khoản ");
-                        System.out.println("nhaap3 để thoát khỏi menu tìm kiếm.");
+                        System.out.println("nhập 3 để thoát khỏi menu tìm kiếm.");
                         int choice = scanner15.nextInt();
                         switch (choice){
                             case 1:
@@ -284,7 +284,7 @@ public class Client {
                         passWord1 = scanner18.nextInt();
                     }while (!check.checkPassWord(passWord1));
                     Scanner scanner19 = new Scanner(System.in);
-                    System.out.println("Nhập số tiền cần nạp");
+                    System.out.print("Nhập số tiền cần nạp");
                     double amountToDeposit = scanner19.nextDouble();
                     hai.inputMoney(accountNumber1, amountToDeposit);
                     break;
