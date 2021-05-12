@@ -101,7 +101,7 @@ public class Account implements Serializable, Subject {
                 o.update(mess);
             }
         }
-        if (observerList.size() > 0){
+        if (subject != null){
             System.out.println(((Account) subject).getUser().getFullName() + ": ");
             for (Observer ob: ((Account) subject).getObserverList()) {
                 ob.update(mess);
@@ -115,9 +115,10 @@ public class Account implements Serializable, Subject {
             String s = " ";
             for (Observer o: observerList
                  ) {
-                if (o instanceof AppNotification) s += "App, ";
+                if (o instanceof PhoneNotification) s += "Phone, ";
                 if (o instanceof EmailNotification) s += "Email, ";
-                if (o instanceof PhoneNotification) s += "Phone";
+                if (o instanceof AppNotification) s += "App";
+
 
             }
             return s;

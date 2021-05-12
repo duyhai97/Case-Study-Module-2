@@ -177,12 +177,10 @@ public class Client {
                         iddk = s1.nextInt();
                     }while (!check.checkID2(iddk));
 
-//                    for (Account acc: accountList
-//                         ) {
-//                        if (acc.getUser().getId() == iddk) {
+
                     for (int i = 0; i <accountList.size() ; i++) {
                         if (accountList.get(i).getUser().getId() == iddk){
-                        Account acc =      accountList.get(i);
+                        Account acc = accountList.get(i);
                             boolean thoat = true;
                             while (thoat) {
                                 Scanner s = new Scanner(System.in);
@@ -203,7 +201,11 @@ public class Client {
                                                 int choice1 = s6.nextInt();
                                                 switch (choice1) {
                                                     case 1:
-                                                        acc.add(phone);
+                                                        if (acc.getObserverList().equals(phone)){
+                                                            System.out.println("ban da dang ki roi,");
+                                                            break;
+                                                        }
+                                                        else acc.add(phone);
                                                         System.out.println("đăng kí thành công. Thêm lựa chọn khác: ");
                                                         break;
                                                     case 2:
