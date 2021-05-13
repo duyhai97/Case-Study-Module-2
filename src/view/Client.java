@@ -201,18 +201,13 @@ public class Client {
                                                 int choice1 = s6.nextInt();
                                                 switch (choice1) {
                                                     case 1:
-                                                        if (acc.getObserverList().equals(phone)){
-                                                            System.out.println("ban da dang ki roi,");
-                                                            break;
-                                                        }
-                                                        else acc.add(phone);
-                                                        System.out.println("đăng kí thành công. Thêm lựa chọn khác: ");
+                                                        acc.add(phone);
+                                                            System.out.println("đăng kí thành công. Thêm lựa chọn khác: ");
                                                         break;
                                                     case 2:
                                                         acc.add(email);
                                                         System.out.println("Đăng kí thành công. Thêm lựa chon khác: ");
                                                         break;
-
                                                     case 3:
                                                         acc.add(app);
                                                         System.out.println("Đăng kí thành công. Thên lựa chon khác: ");
@@ -257,7 +252,6 @@ public class Client {
 
                                         case 3:
                                             System.out.println(acc.getAllObserver());
-
 
                                             break;
                                         case 4:

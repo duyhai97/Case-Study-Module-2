@@ -11,14 +11,6 @@ public class Check {
         this.accountList = accountList;
     }
 
-    private Check(){}
-
-    private static Check Instance;
-
-    public static Check getInstance(){
-        if(Instance == null) Instance = new Check();
-        return Instance;
-    }
 
     public boolean checkID1(int id){
         for (Account account: accountList) {
@@ -38,15 +30,6 @@ public class Check {
         return false;
     }
 
-    public boolean checkPhoneNumber(int phoneNumber){
-        for (Account account: accountList) {
-            if (account.getUser().getPhoneNumber() == phoneNumber){
-                System.out.println("Số điện thoại đã đăng kí rồi.");
-                return false;
-            }
-        }
-        return true;
-    }
 
     public boolean checkAccountNumber1(int accountNumber){
         for (Account account: accountList) {
